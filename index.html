@@ -208,7 +208,7 @@
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100" data-type-id="1000">
                         <div class="text-center p-4 pt-0">
                             <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
                                 <small>Education</small>
@@ -230,7 +230,7 @@
                         <div class="position-relative mt-auto">
                             <img class="img-fluid" src="img/courses-1.jpg" alt="">
                             <div class="causes-overlay">
-                                <a class="btn btn-outline-primary" href="">
+                                <a class="btn btn-outline-primary" href="donations.html?type=Education">
                                     Read More
                                     <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                         <i class="fa fa-arrow-right"></i>
@@ -241,7 +241,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100" data-type-id="Basic Amenities">
                         <div class="text-center p-4 pt-0">
                             <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
                                 <small>Basic Amenities</small>
@@ -274,7 +274,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100" data-type-id="healthy life">
                         <div class="text-center p-4 pt-0">
                             <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
                                 <small>Healthy Life</small>
@@ -566,37 +566,42 @@
     <script src="js/main.js"></script>
     <!-- Template Javascript -->
      <script>
-    function updateCustomAmount(amount) {
-        document.getElementById('custom-amount').value = amount;
-    }
+    document.addEventListener('DOMContentLoaded', function () {
+    const causesItems = document.querySelectorAll('.causes-item');
 
-    function clearRadioButtons() {
-        var radios = document.getElementsByName('amount');
-        for (var i = 0; i < radios.length; i++) {
-            radios[i].checked = false;
-        }
-    }
-
-    function updateCurrencySymbol() {
-        var currencySelect = document.getElementById('currency');
-        var selectedOption = currencySelect.options[currencySelect.selectedIndex];
-        var symbol = selectedOption.getAttribute('data-symbol');
-
-        document.getElementById('label-amount-10').textContent = symbol + '10';
-        document.getElementById('label-amount-50').textContent = symbol + '50';
-        document.getElementById('label-amount-100').textContent = symbol + '100';
-
-        // If a radio button is selected, update the custom amount value to reflect the new currency symbol
-        var selectedAmount = document.querySelector('input[name="amount"]:checked');
-        if (selectedAmount) {
-            document.getElementById('custom-amount').value = selectedAmount.value;
-        }
-    }
-
-    // Initialize the currency symbol on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        updateCurrencySymbol();
+    causesItems.forEach(item => {
+        item.addEventListener('click', function () {
+            const typeId = this.getAttribute('data-type-id');
+            
+            fetch(`https://mongodb-a2ti.onrender.com/donations/${typeId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update the DOM with the fetched data
+                    console.log(data); // For debugging
+                    updateCausesSection(data);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
     });
+});
+
+function updateCausesSection(data) {
+    // Logic to update your causes section with the fetched data
+    // For example:
+    const causesSection = document.querySelector('.causes-item .text-center');
+    causesSection.innerHTML = '';
+
+    data.forEach(donation => {
+        causesSection.innerHTML += `
+            <h5>${donation.title}</h5>
+            <p>${donation.case}</p>
+            <p>Goal: $${donation.goal}</p>
+            <p>Raised: $${donation.raised}</p>
+            <img src="${donation.imageUrl}" alt="${donation.title}">
+        `;
+    });
+}
+
 </script>
 
   
