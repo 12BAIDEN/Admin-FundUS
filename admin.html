@@ -330,7 +330,7 @@
             $('#deleteDonationForm').on('submit', function (e) {
                 e.preventDefault();
                 const title = $('#deleteDonationTitle').val();
-                fetch(`'https://mongodb-a2ti.onrender.com/admin/donation/${title}`, {
+                fetch(`'https://mongodb-a2ti.onrender.com/admin/donation${title}`, {
                     method: 'DELETE',
                 })
                 .then(response => response.json())
