@@ -266,7 +266,7 @@
                 e.preventDefault();
                 const typeName = $('#typeName').val();
                 const typeId = $('#typeId').val();
-                fetch('https://mongodb-a2ti.onrender.com/admin/donation/donation-types', {
+                fetch('https://mongodb-a2ti.onrender.com/admin/donation-types', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -290,7 +290,7 @@
                 const goal = $('#donationgoal').val();
                 const raised = $('#donationraised').val();
                 const imageUrl = $('#donationimageUrl').val();
-                fetch('https://mongodb-a2ti.onrender.com/admin/donation/donations', {
+                fetch('https://mongodb-a2ti.onrender.com/admin/donation', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -311,7 +311,7 @@
                 const title = $('#updateDonationTitle').val();
                 const field = $('#updateDonationField').val();
                 const newValue = $('#updateDonationValue').val();
-                fetch('https://mongodb-a2ti.onrender.com/admin/donation/donations/${title}`, {
+                fetch('https://mongodb-a2ti.onrender.com/admin/donation/${title}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
