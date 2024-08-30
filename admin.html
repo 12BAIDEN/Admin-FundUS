@@ -72,7 +72,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </nav>
     </div>
@@ -171,21 +170,23 @@
                                 <input type="text" class="form-control" id="updateDonationTitle" placeholder="Enter title of donation to update" required>
                             </div>
                             <div class="col-12">
-                                <label for="updateDonationField" class="form-label">Field to Update</label>
-                                <select class="form-control" id="updateDonationField" required>
-                                    <option value="case">Case</option>
-                                    <option value="goal">Goal</option>
-                                    <option value="raised">Raised</option>
-                                    <option value="type">Type</option>
-                                    <option value="imageUrl">Image URL</option>
-                                </select>
+                                <label for="updateDonationGoal" class="form-label">Goal</label>
+                                <input type="number" class="form-control" id="updateDonationGoal" placeholder="Enter new goal amount">
                             </div>
                             <div class="col-12">
-                                <label for="updateDonationValue" class="form-label">New Value</label>
-                                <input type="text" class="form-control" id="updateDonationValue" placeholder="Enter new value" required>
+                                <label for="updateDonationRaised" class="form-label">Amount Raised</label>
+                                <input type="number" class="form-control" id="updateDonationRaised" placeholder="Enter new amount raised">
+                            </div>
+                            <div class="col-12">
+                                <label for="updateDonationCase" class="form-label">Case</label>
+                                <input type="text" class="form-control" id="updateDonationCase" placeholder="Enter new case description">
+                            </div>
+                            <div class="col-12">
+                                <label for="updateDonationImageUrl" class="form-label">Image URL</label>
+                                <input type="url" class="form-control" id="updateDonationImageUrl" placeholder="Enter new image URL">
                             </div>
                             <div class="col-12 text-center">
-                                <button type="submit" class="btn btn-warning py-3 px-5">Update Donation</button>
+                                <button type="submit" class="btn btn-primary py-3 px-5">Update Donation</button>
                             </div>
                         </div>
                     </form>
@@ -213,34 +214,63 @@
                 </div>
             </div>
             <!-- Delete Donation End -->
-
         </div>
     </div>
     <!-- Admin Form End -->
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid bg-dark text-body footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
-                <div class="col-lg-6 col-md-6">
-                    <h5 class="text-white mb-4">Get In Touch</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Dorothy Aseidu Drive, Kumasi, Ghana</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>baidenantwi9@gmail.com</p>
-                    <p class="mb-0"><i class="fa fa-phone-alt me-3"></i>+233 20 123 4567</p>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Address</h5>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>Dorothy Aseidu Drive, Kumasi, Ghana</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+233 55 232 4524</p>
+                    <p><i class="fa fa-envelope me-3"></i>baidenantwi9@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light btn-social me-1" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light btn-social me-1" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light btn-social me-1" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light btn-social me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <h5 class="text-white mb-4">Quick Links</h5>
-                    <a class="btn btn-link text-white-50" href="">About Us</a>
-                    <a class="btn btn-link text-white-50" href="">Contact Us</a>
-                    <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
-                    <a class="btn btn-link text-white-50" href="">Terms & Condition</a>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Quick Links</h5>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Our Services</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Popular Links</h5>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Our Services</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Newsletter</h5>
+                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <div class="position-relative w-100">
+                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid text-white-50 copyright py-4">
-        <div class="container text-center">
-            <p class="mb-0">&copy; <a class="text-white" href="#">Your Site Name</a>. All Rights Reserved.</p>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">FundUs</a>, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <!-- This template is distributed by <a href="https://themewagon.com">ThemeWagon</a> -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Footer End -->
@@ -249,99 +279,16 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            // Add Donation Type
-            $('#addTypeForm').on('submit', function (e) {
-                e.preventDefault();
-                const typeName = $('#typeName').val();
-                const typeId = $('#typeId').val();
-                fetch('https://mongodb-a2ti.onrender.com/admin/donation-types', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ name: typeName, id: typeId }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert('Donation type added successfully!');
-                    $('#addTypeForm')[0].reset();
-                })
-                .catch(error => console.error('Error:', error));
-            });
-
-            // Add Donation
-            $('#addDonationForm').on('submit', function (e) {
-                e.preventDefault();
-                const title = $('#donationtitle').val();
-                const caseDesc = $('#donationcase').val();
-                const type = $('#donationtype').val();
-                const goal = $('#donationgoal').val();
-                const raised = $('#donationraised').val();
-                const imageUrl = $('#donationimageUrl').val();
-                fetch('https://mongodb-a2ti.onrender.com/admin/donation', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ title, case: caseDesc, type, goal, raised, imageUrl }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert('Donation added successfully!');
-                    $('#addDonationForm')[0].reset();
-                })
-                .catch(error => console.error('Error:', error));
-            });
-
-            // Update Donation
-            $('#updateDonationForm').on('submit', function (e) {
-                e.preventDefault();
-                const title = $('#updateDonationTitle').val();
-                const field = $('#updateDonationField').val();
-                const newValue = $('#updateDonationValue').val();
-                fetch('https://mongodb-a2ti.onrender.com/admin/donation/${title}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ [field]: newValue }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert('Donation updated successfully!');
-                    $('#updateDonationForm')[0].reset();
-                })
-                .catch(error => console.error('Error:', error));
-            });
-
-            // Delete Donation
-            $('#deleteDonationForm').on('submit', function (e) {
-                e.preventDefault();
-                const title = $('#deleteDonationTitle').val();
-                fetch(`'https://mongodb-a2ti.onrender.com/admin/donation${title}`, {
-                    method: 'DELETE',
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert('Donation deleted successfully!');
-                    $('#deleteDonationForm')[0].reset();
-                })
-                .catch(error => console.error('Error:', error));
-            });
-        });
-    </script>
 </body>
 
 </html>
