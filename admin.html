@@ -289,6 +289,28 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+<script>
+document.getElementById('deleteDonationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const title = document.getElementById('deleteDonationTitle').value;
+
+    fetch(`https://mongodb-a2ti.onrender.com/admin/donation${title}`, {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Donation deleted successfully!');
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+
+
+</script>
+
 </body>
 
 </html>
