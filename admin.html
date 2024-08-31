@@ -269,7 +269,7 @@ document.getElementById('deletionForm').addEventListener('submit', async (e) => 
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(donation)
+                body: JSON.stringify(delete-donation)
             });
     
             const data = await response.json();
