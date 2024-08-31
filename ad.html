@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Donation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Delete Donation</h1>
+    <form id="deleteDonationForm">
+        <label for="title">Donation Title:</label>
+        <input type="text" id="title" name="title" placeholder="Enter donation title" required>
+        <button type="submit">Delete Donation</button>
+    </form>
+    <div class="message" id="message"></div>
+
+    <script>
+document.getElementById('deleteDonationForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+
+    const title = document.getElementById('title').value;
+
+    try {
+        const response = await fetch('https://mongodb-a2ti.onrender.com/admin/delete-donation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title })
+        });
+
+        const messageElement = document.getElementById('message');
+
+        // Determine content type before processing
+        const contentType = response.headers.get('content-type');
+
+        if (response.ok) {
+            if (contentType && contentType.includes('application/json')) {
+                // Parse as JSON
+                const data = await response.json();
+                messageElement.textContent = data.message;
+                messageElement.style.color = 'green';
+            } else {
+                // Parse as plain text
+                const text = await response.text();
+                messageElement.textContent = 'Success: ' + text;
+                messageElement.style.color = 'green';
+            }
+        } else {
+            if (contentType && contentType.includes('application/json')) {
+                // Parse as JSON
+                const errorData = await response.json();
+                messageElement.textContent = errorData.message;
+                messageElement.style.color = 'red';
+            } else {
+                // Parse as plain text
+                const text = await response.text();
+                messageElement.textContent = 'Error: ' + text;
+                messageElement.style.color = 'red';
+            }
+        }
+    } catch (error) {
+        console.error('Request failed:', error);
+        document.getElementById('message').textContent = 'An error occurred while processing your request: ' + error.message;
+        document.getElementById('message').style.color = 'red';
+    }
+});
+
+
+
+    </script>
+</body>
+</html>
