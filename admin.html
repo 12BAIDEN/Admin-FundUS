@@ -256,45 +256,30 @@
     });
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('deletionForm').addEventListener('submit', async (e) => {
+document.getElementById('deletionForm').addEventListener('submit', async (e) => {
         e.preventDefault();
-
-        const titleElement = document.getElementById('donationtitle');
-        if (!titleElement) {
-            console.error('Element with ID "donationtitle" not found.');
-            alert('Form element not found.');
-            return;
-        }
-
+    
         const donation = {
-            title: donationtitle.value,
+            title: document.getElementById('donationtitle').value,
+           
         };
-
+    
         try {
             const response = await fetch('https://mongodb-a2ti.onrender.com/admin/donation', {
-                method: 'POST', 
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(donation)
             });
-
-            const contentType = response.headers.get('content-type');
-            if (contentType && contentType.includes('application/json')) {
-                const data = await response.json();
-                alert(data.message);
-            } else {
-                const text = await response.text();
-                console.error('Unexpected response format:', text);
-                alert('Unexpected response from server.');
-            }
+    
+            const data = await response.json();
+            alert(data.message);
         } catch (err) {
             console.error('Error deleting donation:', err);
-            alert('Failed to delete donation.');
+            alert('Failed to add donation.');
         }
     });
-});
 
 
 
