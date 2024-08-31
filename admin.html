@@ -161,58 +161,6 @@
     </div>
     <!-- Admin Form End -->
 
-    <!-- Update Donation Form Start -->
-<div class="text-center mx-auto mt-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-    <h1 class="display-6 mb-5">Update Donation</h1>
-</div>
-<div class="row g-4">
-    <div class="col-lg-8 mx-auto">
-        <form id="updateDonationForm">
-            <div class="row g-3">
-                <div class="col-12">
-                    <label for="updateDonationTitle" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="updateDonationTitle" placeholder="Enter title of donation to update" required>
-                </div>
-                <!-- Add fields you want to update -->
-                <div class="col-12">
-                    <label for="updateDonationCase" class="form-label">Case</label>
-                    <input type="text" class="form-control" id="updateDonationCase" placeholder="Update case description">
-                </div>
-                <div class="col-12">
-                    <label for="updateDonationGoal" class="form-label">Goal</label>
-                    <input type="number" class="form-control" id="updateDonationGoal" placeholder="Update goal amount">
-                </div>
-                <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary py-3 px-5">Update Donation</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<!-- Update Donation Form End -->
-
-<!-- Delete Donation Form Start -->
-<div class="text-center mx-auto mt-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-    <h1 class="display-6 mb-5">Delete Donation</h1>
-</div>
-<div class="row g-4">
-    <div class="col-lg-8 mx-auto">
-        <form id="deleteDonationForm">
-            <div class="row g-3">
-                <div class="col-12">
-                    <label for="deleteDonationTitle" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="deleteDonationTitle" placeholder="Enter title of donation to delete" required>
-                </div>
-                <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-danger py-3 px-5">Delete Donation</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<!-- Delete Donation Form End -->
-
-
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light py-5">
         <div class="container">
@@ -310,56 +258,7 @@
             console.error('Error adding donation:', err);
             alert('Failed to add donation.');
         }
-    // Handle Update Donation
-document.getElementById('updateDonationForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const title = document.getElementById('updateDonationTitle').value;
-    const updateData = {
-        case: document.getElementById('updateDonationCase').value,
-        goal: document.getElementById('updateDonationGoal').value,
-        // Add more fields as necessary
-    };
-
-    // Remove any fields that are empty
-    Object.keys(updateData).forEach(key => updateData[key] === '' && delete updateData[key]);
-
-    try {
-        const response = await fetch(`https://mongodb-a2ti.onrender.com/admin/donations/${title}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updateData)
-        });
-
-        const data = await response.json();
-        alert(data.message);
-    } catch (err) {
-        console.error('Error updating donation:', err);
-        alert('Failed to update donation.');
-    }
-});
-
-// Handle Delete Donation
-document.getElementById('deleteDonationForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const title = document.getElementById('deleteDonationTitle').value;
-
-    try {
-        const response = await fetch(`https://mongodb-a2ti.onrender.com/admin/donations/${title}`, {
-            method: 'DELETE'
-        });
-
-        const data = await response.json();
-        alert(data.message);
-    } catch (err) {
-        console.error('Error deleting donation:', err);
-        alert('Failed to delete donation.');
-    }
-});
-
+    });
     
         </script>
 
